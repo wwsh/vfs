@@ -63,7 +63,7 @@ class Virtual implements IteratorInterface
      * @param string $path
      * @throws \Exception
      */
-    public function __construct($vfsDefinition, $path = null)
+    public function __construct($path, $vfsDefinition)
     {
         if (is_string($vfsDefinition)) {
             if (false === file_exists($vfsDefinition)) {
@@ -211,7 +211,7 @@ class Virtual implements IteratorInterface
             $newPath => $current
         ];
 
-        return new self($subVfs, $newPath);
+        return new self($newPath, $subVfs);
     }
 
     /**

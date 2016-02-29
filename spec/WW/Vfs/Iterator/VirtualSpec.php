@@ -47,25 +47,25 @@ class VirtualSpec extends ObjectBehavior
 
     function it_should_accept_vfs_filepath_in_constructor()
     {
-        $this->beConstructedWith(__DIR__ . '/../../../../vfs-example.json');
+        $this->beConstructedWith('/music', __DIR__ . '/../../../../vfs-example.json');
         $this->shouldHaveType('WW\Vfs\Iterator\Virtual');
     }
 
     function it_should_throw_exception_if_vfs_file_doesnt_exist()
     {
-        $this->beConstructedWith('some_silly_name.json');
+        $this->beConstructedWith('/root', 'some_silly_name.json');
         $this->shouldThrow(new \Exception('File not found'))->duringInstantiation();
     }
 
     function it_should_accept_vfs_array_definition_in_constructor()
     {
-        $this->beConstructedWith($this->exampleDefinition);
+        $this->beConstructedWith('/root', $this->exampleDefinition);
         $this->shouldHaveType('WW\Vfs\Iterator\Virtual');
     }
 
     function it_should_iterate_through_directories()
     {
-        $this->beConstructedWith($this->exampleDefinition, '/root');
+        $this->beConstructedWith('/root', $this->exampleDefinition);
         $this->rewind();
         $this->current()->__toString()->shouldBe('1993 Haddaway - What Is Love (Remixes)');
         $this->valid()->shouldBe(true);
@@ -79,7 +79,7 @@ class VirtualSpec extends ObjectBehavior
 
     function it_should_be_recursive_and_detailed()
     {
-        $this->beConstructedWith($this->exampleDefinition, '/root');
+        $this->beConstructedWith('/root', $this->exampleDefinition);
         $this->rewind();
         $this->current()->__toString()->shouldBe('1993 Haddaway - What Is Love (Remixes)');
         $this->valid()->shouldBe(true);
@@ -109,13 +109,13 @@ class VirtualSpec extends ObjectBehavior
 
     public function it_should_not_return_dots()
     {
-        $this->beConstructedWith($this->exampleDefinition, '/root');
+        $this->beConstructedWith('/root', $this->exampleDefinition);
         $this->isDot()->shouldBe(false);
     }
     
     function it_should_return_functional_iterator_objects()
     {
-        $this->beConstructedWith(__DIR__ . '/../../../../vfs-example.json');
+        $this->beConstructedWith('/music', __DIR__ . '/../../../../vfs-example.json');
         $this->current();
         $iterator = $this->getChildren();
         $iterator->getPath()->shouldBe('/music/1993 Haddaway - What Is Love (Remixes)');
