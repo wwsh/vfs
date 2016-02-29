@@ -1,0 +1,26 @@
+{
+  "name": "wwsh/vfs",
+  "description": "Simple, iterable, emulated file system iterator for PHP apps",
+  "keywords": [
+    "psr",
+    "psr-3"
+  ],
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Thomas Parys",
+      "homepage": "http://wwsh.io/"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "" : "src"
+    }
+  },
+  "require-dev": {
+    "phpspec/phpspec": "~2.0"
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
