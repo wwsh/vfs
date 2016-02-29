@@ -63,8 +63,9 @@ See [**here**][1] for original API explanation.
 Example working code
 --------------------
 
+        $path = ... // define starting path
         $vfsArray = []; // paste the VFS array here. See above.
-        $iterator = FileSystemFactory::create('Virtual', [$vfsArray]);
+        $iterator = FileSystemFactory::create('Virtual', [$path, $vfsArray]);
         $iterator->rewind();
         $this->out('Browsing path ' . $iterator->getPath() . '...');
 
