@@ -67,7 +67,7 @@ Example working code
         $vfsArray = []; // paste the VFS array here. See above.
         $iterator = FileSystemFactory::create('vfs', [$path, $vfsArray]);
         $iterator->rewind();
-        $this->out('Browsing path ' . $iterator->getPath() . '...');
+        echo 'Browsing path ' . $iterator->getPath() . "...\n";
 
         while ($iterator->valid()) {
             $file = $iterator->current();
@@ -76,7 +76,7 @@ Example working code
                 continue;
             }
 
-            $this->out('Processing directory ' . $file->getFilename());
+            echo 'Processing directory ' . $file->getFilename() . "\n";
             // process (string)$file.....
             $results[] = $result;
 
