@@ -46,6 +46,7 @@ class FileSystemFactory
 
         $class = new ReflectionClass('WW\\Vfs\\Iterator\\' . $name);
 
+        // the interface is compatible with all Iterators
         return $class->newInstanceArgs($args);
     }
 

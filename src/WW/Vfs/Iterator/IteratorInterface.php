@@ -28,10 +28,16 @@ namespace WW\Vfs\Iterator;
 
 /**
  * Interface IteratorInterface
+ *
+ * A functional part of RecursiveDirectoryIterator's interface.
+ * Albeit we do not need to implement remaining methods.
+ * @todo Feel free to do so.
+ *
  * @package Vfs\Iterator
  */
 interface IteratorInterface
 {
+    // all methods commented in the implementation class
     public function getFilename();
 
     public function getPath();
@@ -41,16 +47,16 @@ interface IteratorInterface
     public function isDot();
 
     public function isFile();
-    
+
     public function current();
-    
+
     public function next();
-    
+
     public function valid();
 
     public function getChildren();
-    
+
     public function hasChildren();
-    
+
     public function rewind();
 }

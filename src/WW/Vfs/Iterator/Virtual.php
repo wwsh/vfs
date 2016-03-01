@@ -27,7 +27,6 @@
 namespace WW\Vfs\Iterator;
 
 use WW\Vfs\Iterator\Exception\VfsException;
-use WW\Vfs\Iterator\IteratorInterface;
 
 /**
  * Class Virtual
@@ -99,6 +98,9 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Whenever we need to convert the current iterator to string,
+     * in other words, iterator must be printable (return current filename).
+     * 
      * @return string
      */
     public function __toString()
@@ -114,6 +116,8 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Getting the filename. Using the __toString()
+     * 
      * @return string
      */
     public function getFilename()
@@ -124,6 +128,8 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Getting the path being iterated.
+     * 
      * @return null|string
      */
     public function getPath()
@@ -132,6 +138,11 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Getting the isDirectory flag.
+     * 
+     * Actually, we don't keep such information. 
+     * We presume that numeric keys mean we have reached the file level. 
+     * 
      * @return bool
      */
     public function isDir()
@@ -142,6 +153,8 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Always false. Not supported.
+     * 
      * @return bool
      */
     public function isDot()
@@ -150,6 +163,8 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Inversion of isDir()
+     * 
      * @return bool
      */
     public function isFile()
@@ -158,6 +173,9 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * The classic iterator returns a file structure. 
+     * We are returning ourselves just to keep simplicity.
+     * 
      * @return mixed
      */
     public function current()
@@ -172,6 +190,8 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * This is internally driven by the php array key mechanism. 
+     * 
      * @return mixed
      */
     public function next()
@@ -180,6 +200,9 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * If we are at the end, php's current no longer returns anything
+     * except false.
+     * 
      * @return bool
      */
     public function valid()
@@ -194,6 +217,12 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Entering a sub-element in the data tree.
+     * 
+     * Determining a new "mounting point" in the array 
+     * and creating an iterator copy with it.
+     * This makes the recursion possible.
+     * 
      * @return Virtual|bool
      */
     public function getChildren()
@@ -215,6 +244,8 @@ class Virtual implements IteratorInterface
     }
 
     /**
+     * Obviously files cannot have children :)
+     * 
      * @return bool
      */
     public function hasChildren()
@@ -223,7 +254,7 @@ class Virtual implements IteratorInterface
     }
 
     /**
-     * rewind()
+     * Based on classic php's rewind() method.
      */
     public function rewind()
     {
